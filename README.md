@@ -1,7 +1,7 @@
 # Entrega1GarciaMolina
 
 # Pasos para iniciar proyecto
-- Abrir terminal
+- Abrir terminal dentro del proyecto
 - Escribir comando "cd Entregable1GarciaMolina"
 - Ejecutar comando "python manage.py runserver"
 - En navegador web dirigirse a "localhost:8000/app"
