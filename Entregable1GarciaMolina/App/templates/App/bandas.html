@@ -1,11 +1,58 @@
 {% extends "App/padre.html" %}
 {% load static %}
+
 {% block titulo %}
     Bandas
 {% endblock %}
+
 {% block subtitulo %}
     Gestión Musical
 {% endblock %}
+
 {% block contenido %}
+    
+    {% if miFormulario.errors %}
+        <p style="color: red;">Error!</p>
+    {% endif%}
+    <div class="row mx-5">
+        <div class="col-6">
+            <h4>Ingresar nueva banda</h4><br>
+            <form action="{% url 'Bandas' %}" method="post">{% csrf_token %}
+                <!-- <p>Direccion: <input type="text" name="direccion" /></p>
+        
+                <p>Año: <input type="number" name="anioFund" /></p> -->
+                <table>
+                    {{miFormulario.as_table}}
+                </table>
+                <input type="submit" value="Enviar" />
+            </form>
+        </div>
+        <div class="col-6">
+            <h4>Buscar banda</h4><br>
+            <form method="get" action="{% url 'BandasBuscar' %}">
+                <div class="form-group">
+                    <label for="nombre">Nombre: </label>
+                    <input type="text" class="form-control my-2" id="nombre" name="nombre" placeholder="Ingresa el nombre de la banda">
+                    <input type="submit" value="Buscar" />
+                </div>
+            </form>
+        </div>
+    </div>
+    {% if bandas %}
+        <div class="row">
+            <div class="col-12 text-center"><h4>Resultados de la busqueda</h2></div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <ul class="list-group">
+                    {% for i in bandas %}
+                        <li class="list-group-item">
+                            {{i}}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    {% endif %}
 
 {% endblock %}
